@@ -38,13 +38,45 @@
 					<br>
 				</div>
 				</div>
-				<form class="login100-form validate-form">
+			
 					<span class="login100-form-title p-b-49">
 						<h3>SISTEM INVENTARIS</h3>
 						<h3 style="padding-top: 10px;">SMK MUHAMMADIYAH 06</h3>
 						<h3 style="padding-top: 10px;">DONOMULYO</h3>
 					</span>
-					<form action="<?php echo base_url('Login/input_login'); ?>" method="post" >
+				<form method="post" enctype="multipart/form-data" action="<?php echo base_url('Login/coba'); ?>">
+						<?php
+        $errors = $this->session->flashdata('errors');
+        if(!empty($errors)){
+        ?>
+          <div class="row">
+              <div class="col-md-12">
+              <div class="alert alert-danger text-center">
+                  <?php foreach($errors as $key=>$error){ ?>
+                  <?php echo "$error<br>"; ?>
+                  <?php } ?>
+              </div>
+              </div>
+          </div>
+        <?php
+        }
+        if($msg = $this->session->flashdata('error_login')){ ?>
+          <div class="row">
+              <div class="col-md-12">
+                <div class="alert alert-danger text-center">
+                    <?= $msg ?>
+                </div>
+              </div>
+          </div>
+        <?php } else if($msg = $this->session->flashdata('success_login')){ ?>
+          <div class="row">
+              <div class="col-md-12">
+                <div class="alert alert-success text-center">
+                    <?= $msg ?>
+                </div>
+              </div>
+          </div>
+        <?php } ?>
 					<div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
 						<span class="label-input100">Username</span>
 						<input class="input100" type="text" name="username" placeholder="Type your username">
@@ -66,7 +98,7 @@
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn" type="submit">
+							<button class="login100-form-btn" type="submit" name="submit">
 								Login
 							</button>
 						</div>
@@ -93,7 +125,7 @@
 					</div>
 
 				
-				</form>
+		
 			</div>
 		</div>
 	</div>
